@@ -1,6 +1,7 @@
 package com.company;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -10,33 +11,42 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class Main extends Application implements DelayListener {
 
     private Word[] words;
     private int counter = 0;
+    private TextField input;
+    private TextArea output;
+    private MyThread m = new MyThread(this);
 
     public static void main(String[] args) {
+
+
 
 	    launch(null);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        //MyThread m = new MyThread(this);  // move to class field...
         initArray();
         VBox layout = new VBox();
-        TextField input = new TextField();
-        TextArea output = new TextArea();
-
+        input = new TextField();
+        output = new TextArea();
         Button btn = new Button("Start");
 
         btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                input.setText(words[counter].getHebrew());
-                output.setText(words[counter].getEnglish());
-                counter++;
-                if (counter == words.length){
-                    counter = 0;
+                if (m.isRunning()){ // THREAD IS RUNNING???
+                    // stop....
+                    m.shutDown();
+                    btn.setText("START");
+                }else{
+                    // start...
+                    startRunning();
+                    m.start();  // can't call run() method more than once.
+                    btn.setText("STOP");
                 }
             }
         });
@@ -49,6 +59,12 @@ public class Main extends Application {
 
     }
 
+    public void startRunning(){
+        m = new MyThread(this);
+    }
+
+
+
     public void initArray(){
         words = new Word[]{
                 new Word("כלב", "dog"),
@@ -58,4 +74,21 @@ public class Main extends Application {
         };
     }
 
+    @Override
+    public void changeText() {
+        // if a call a method from another thread
+        // and it should change the UI, IT WON'T WORK!!!
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                input.setText(words[counter].getHebrew());
+                output.setText(words[counter].getEnglish());
+                counter++;
+                if (counter == words.length){
+                    counter = 0;
+                }
+            }
+        });
+
+    }
 }
