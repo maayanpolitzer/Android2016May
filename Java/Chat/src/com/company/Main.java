@@ -1,7 +1,10 @@
 package com.company;
 
+import com.company.interfaces.OnMessageArrived;
 import com.company.threads.GetMessagesThread;
+import com.company.threads.SendMessageThread;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -17,16 +20,22 @@ import javafx.stage.WindowEvent;
 
 import java.util.ArrayList;
 
-public class Main extends Application {
+public class Main extends Application implements OnMessageArrived {
+    // server address...
+    public static final String IP_ADDRESS = "10.0.7.49";
+    public static final int PORT = 14999;
 
     private Stage window;   // external screen;
+    // screen size in pixels
     private final double WIDTH = 500;
     private final double HEIGHT = 500;
+
     private final String MY_NAME = "Maayan";
+
     private Button sendBtn;
     private TextField input;
     private TextArea chatView;
-    private ArrayList<String> messages;
+
     private GetMessagesThread getMessagesThread;
 
     @Override
@@ -34,10 +43,8 @@ public class Main extends Application {
         window = primaryStage;
         createUI(); // display.
         addActionsToWidgets();  // behaviour
-        messages = new ArrayList<>();
-        getMessagesThread = new GetMessagesThread(messages.size());
+        getMessagesThread = new GetMessagesThread(this);
         getMessagesThread.start();
-
     }
 
     private void addActionsToWidgets(){
@@ -70,7 +77,9 @@ public class Main extends Application {
     private void sendMessage(){
         String message = input.getText().trim();
         if (!message.isEmpty()){
-            chatView.appendText(MY_NAME + ": " + message + "\n");
+            //chatView.appendText(MY_NAME + ": " + message + "\n"); // works local...
+            SendMessageThread sendMessageThread = new SendMessageThread(MY_NAME + ": " + message + "\n");
+            sendMessageThread.start();
             input.clear();
         }
     }
@@ -95,6 +104,15 @@ public class Main extends Application {
         window.setTitle("צ\'ט כיתת אננס");
         window.show();
         input.requestFocus();
+    }
+
+    public void addMessageToChatView(String message){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                chatView.appendText(message);
+            }
+        });
     }
 
     public static void main(String[] args) {
