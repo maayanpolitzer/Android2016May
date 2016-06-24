@@ -17,14 +17,24 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeActivity(View view) {
         // TODO: go to second activity...
-        /*
+        // explicit intent...
         Intent intent = new Intent(this, SecondActivity.class);
         startActivity(intent);
-        */
-        // implicit intent: - move to other app activity...
+
+/*
+        // implicit intent - move to other app activity...
         Uri phoneNumber = Uri.parse("tel:0542222456");
         Intent intent = new Intent(Intent.ACTION_DIAL, phoneNumber);
         startActivity(intent);
-
+        */
+        /*
+        Uri link = Uri.parse("http://www.youtube.com");
+        Intent intent = new Intent(Intent.ACTION_VIEW, link);
+        startActivity(intent);
+        */
+        /*
+        Uri contacts = Uri.parse("content://contacts");
+        startActivity(new Intent(Intent.ACTION_PICK, contacts));
+        */
     }
 }
