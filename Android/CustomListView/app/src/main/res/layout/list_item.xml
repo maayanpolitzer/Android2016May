@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:padding="6dp">
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/one"
+        android:id="@+id/list_item_image_view"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="16.6.1986"
+        android:textSize="10sp"
+        android:singleLine="true"
+        android:textColor="#000"
+        android:layout_below="@id/list_item_image_view"
+        android:layout_alignLeft="@id/list_item_image_view"
+        android:layout_alignRight="@id/list_item_image_view"
+        android:textAlignment="center"
+        android:id="@+id/list_item_dob_text_view"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Man"
+        android:layout_toRightOf="@id/list_item_image_view"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="24dp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:id="@+id/list_item_name_text_view"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_call"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@id/list_item_dob_text_view"
+        android:layout_alignTop="@id/list_item_image_view"
+        android:id="@+id/list_item_dialer_image_view"/>
+
+</RelativeLayout>
