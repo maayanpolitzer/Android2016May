@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#777">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Maayan"
+        android:layout_marginRight="30dp"
+        android:id="@+id/list_item_name_text_view"
+        android:textSize="22sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="30"
+        android:id="@+id/list_item_age_text_view"
+        android:layout_marginRight="30dp"
+        android:textSize="22sp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:id="@+id/list_item_call_image_view"
+        android:src="@android:drawable/ic_menu_call"/>
+
+</LinearLayout>
