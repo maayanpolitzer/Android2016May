@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="16dp"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="To:"
+        android:textSize="26sp"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_margin="36dp"
+        android:id="@+id/group"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/radioButtonMom"
+            android:text="Mom"/>
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/radioButtonDad"
+            android:text="Dad"/>
+
+    </RadioGroup>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your message"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp"
+        android:id="@+id/message_edit_text"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="send"
+        android:id="@+id/send_button"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="waiting for you to send"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:id="@+id/sms_status_text_view"
+        android:layout_above="@id/send_button"
+        android:layout_margin="16dp"/>
+
+</RelativeLayout>

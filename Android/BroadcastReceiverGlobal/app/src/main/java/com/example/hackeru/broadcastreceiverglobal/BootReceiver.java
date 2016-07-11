@@ -11,11 +11,11 @@ import android.widget.Toast;
 public class BootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        /*
+
         Intent bootIntent = new Intent(context, MainActivity.class);
         bootIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(bootIntent);
-        */
+
         //Toast.makeText(context, "called!!!", Toast.LENGTH_LONG).show();
         /*
         go to the internet and check for messages...

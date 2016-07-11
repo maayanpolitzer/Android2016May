@@ -20,6 +20,7 @@ public class OutgoingCallReceiver extends BroadcastReceiver {
         if (!phoneNumber.equals(momPhone) && !phoneNumber.equals(dadPhone)){
             setResultData(null);    // block the call!!!
             Toast.makeText(context, "Don't call there!!! :( ", Toast.LENGTH_LONG).show();
+
         }
     }
 }
