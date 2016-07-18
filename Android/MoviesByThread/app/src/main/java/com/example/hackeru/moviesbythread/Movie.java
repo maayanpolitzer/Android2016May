@@ -26,7 +26,6 @@ public class Movie {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override

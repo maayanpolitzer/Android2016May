@@ -14,6 +14,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText searchEditText;
     private Button searchButton;
 
+    /*
+    HOME WORK:
+    http://www.androidbegin.com/tutorial/jsonparsetutorial.txt
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

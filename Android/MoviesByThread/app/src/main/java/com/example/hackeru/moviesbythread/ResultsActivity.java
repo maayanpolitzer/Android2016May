@@ -11,6 +11,7 @@ public class ResultsActivity extends AppCompatActivity implements DownloadComple
 
     private ListView listView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +31,8 @@ public class ResultsActivity extends AppCompatActivity implements DownloadComple
     }
 
     public void displayList(ArrayList<Movie> moviesList){
-        ArrayAdapter<Movie> adapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_list_item_1,
-                moviesList);
+        //ArrayAdapter<Movie> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,moviesList);
+        MoviesAdapter adapter = new MoviesAdapter(this, moviesList);
         listView.setAdapter(adapter);
     }
 
