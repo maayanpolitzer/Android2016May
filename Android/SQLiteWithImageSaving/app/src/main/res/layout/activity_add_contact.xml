@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".AddContactActivity">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/name_edit_text"
+        android:hint="Contact name"
+        android:inputType="textPersonName"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name_edit_text"
+        android:id="@+id/phone_edit_text"
+        android:hint="Phone number"
+        android:inputType="number"/>
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/phone_edit_text"
+        android:layout_marginTop="16dp"
+        android:background="#00f"
+        android:id="@+id/avatar_image_view"/>
+
+    <TextView
+        android:id="@+id/tap_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tap to change"
+        android:layout_alignLeft="@id/avatar_image_view"
+        android:layout_below="@id/avatar_image_view"
+        android:textSize="18sp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:background="#00f"
+        android:layout_alignRight="@id/avatar_image_view"
+        android:gravity="center"/>
+
+    <FrameLayout
+        android:id="@+id/change_avatar_frame_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/avatar_image_view"
+        android:layout_alignBottom="@id/tap_text_view"
+        android:layout_alignLeft="@id/avatar_image_view"
+        android:layout_alignRight="@id/avatar_image_view"
+        >
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="save"
+        android:id="@+id/save_contact_button"/>
+
+</RelativeLayout>
