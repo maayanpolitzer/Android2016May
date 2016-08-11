@@ -71,6 +71,8 @@ public class AddContactActivity extends AppCompatActivity implements View.OnClic
             values.put(DBOpenHelper.COLUMN_IMAGE_URI, imageFile.getPath());
             db.insert(DBOpenHelper.TABLE_CONTACTS, null, values);
             db.close();
+            setResult(RESULT_OK);
+            finish();
         }
     }
 
