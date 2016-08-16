@@ -2,11 +2,13 @@ package com.example.hackeru.volleymovies;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -72,19 +74,35 @@ public class ListFragment extends Fragment {
     }
 
     private void displayList(JSONObject response){
-        ArrayList<Movie> movies = new ArrayList<>();
+        //final ArrayList<Movie> movies = new ArrayList<>();
         try {
-            JSONArray arr = response.getJSONArray("Search");
+            final JSONArray arr = response.getJSONArray("Search");
+            /*
             for (int i = 0; i < arr.length(); i++){
                 movies.add(new Movie(arr.getJSONObject(i)));
                 /*
                 JSONObject movieJSON = arr.getJSONObject(i);
                 Movie movie = new Movie(movieJSON);
                 movies.add(movie);
-                */
+
             }
-            ArrayAdapter<Movie> adapter = new ArrayAdapter<Movie>(context, android.R.layout.simple_list_item_1, movies);
+        */
+            //ArrayAdapter<Movie> adapter = new ArrayAdapter<Movie>(context, android.R.layout.simple_list_item_1, movies);
+            //MoviesAdapter adapter = new MoviesAdapter(context, movies);
+            JsonsAdapter adapter = new JsonsAdapter(context, arr);
             listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                   // String movieID = movies.get(position).getId();
+                    try {
+                        String movieID = arr.getJSONObject(position).getString("imdbID");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
 
         } catch (JSONException e) {
             e.printStackTrace();

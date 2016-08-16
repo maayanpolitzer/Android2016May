@@ -35,7 +35,7 @@ public class ResultsActivity extends AppCompatActivity {
 
         getFragmentManager()
                 .beginTransaction()
-                .add(R.id.list_container, fragment)
+                .replace(R.id.list_container, fragment)
                 .commit();
 
 
@@ -61,6 +61,16 @@ public class ResultsActivity extends AppCompatActivity {
                 }
             }
         }).start();
+        */
+    }
+
+    private void onItemClick(Bundle bundle){
+        /*
+        if(isLand){
+            // send data to fragment
+        }else{
+            // intent to DetailActivity.
+        }
         */
     }
 
