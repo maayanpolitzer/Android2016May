@@ -14,6 +14,8 @@ public class CallReceiver extends BroadcastReceiver {
     private PhoneListener listener;
     private TelephonyManager manager;
 
+    // action defined in manifest.
+
     @Override
     public void onReceive(Context context, Intent intent) {
         manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);   // get the calls manager.

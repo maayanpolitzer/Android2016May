@@ -29,6 +29,7 @@ public class PhoneListener extends PhoneStateListener {
                 // someone is calling me...
                 break;
             case TelephonyManager.CALL_STATE_OFFHOOK:
+                // call started!
                 if (!recording){
                     setRecord(true, incomingNumber, lastState == TelephonyManager.CALL_STATE_RINGING ? CallState.INCOMING : CallState.OUTGOING);
                 }

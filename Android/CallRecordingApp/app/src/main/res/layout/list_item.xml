@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="4dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginRight="24dp"
+        android:id="@+id/list_item_call_image_view"
+        android:src="@android:drawable/sym_call_incoming"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="052-5555555"
+        android:layout_toRightOf="@id/list_item_call_image_view"
+        android:textSize="20sp"
+        android:id="@+id/list_item_phone_number_text_view"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6/4 12:40"
+        android:layout_toRightOf="@id/list_item_call_image_view"
+        android:layout_below="@id/list_item_phone_number_text_view"
+        android:layout_marginLeft="16dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:id="@+id/list_item_call_date_text_view"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="04:56"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="16dp"
+        android:textSize="20sp"
+        android:textColor="#ff0000"
+        android:id="@+id/list_item_call_duration_text_view"/>
+
+</RelativeLayout>

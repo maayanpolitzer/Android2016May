@@ -12,6 +12,8 @@ import android.support.v7.app.NotificationCompat;
 
 import com.example.hackeru.callrecordingapp.CallDetailActivity;
 import com.example.hackeru.callrecordingapp.R;
+import com.example.hackeru.callrecordingapp.infrastructure.Call;
+import com.example.hackeru.callrecordingapp.infrastructure.RecordingTableConnector;
 
 import java.io.IOException;
 
@@ -20,12 +22,17 @@ import java.io.IOException;
  */
 public class RecordingService extends Service {
 
+    // TODO: 8/18/2016 dont forget declare the service in the MANIFEST file.
+
     private MediaRecorder recorder;
+    private Call call;
+    private String phoneNumber;
+    private int state;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        String phoneNumber = intent.getStringExtra(PhoneListener.PHONE_NUMBER);
-        int state = intent.getIntExtra(PhoneListener.STATE, -1);
+        phoneNumber = intent.getStringExtra(PhoneListener.PHONE_NUMBER);
+        state = intent.getIntExtra(PhoneListener.STATE, -1);
         startRecording();
         return START_NOT_STICKY;            // android will not restart this service if it will be destroyed.
         //return START_STICKY;              // android will restart to this service.
@@ -33,7 +40,8 @@ public class RecordingService extends Service {
     }
 
     private void startRecording(){
-
+        call = new Call(state, phoneNumber, "flgjndf");
+        /*
         recorder = new MediaRecorder();
         // TODO: 8/22/2016 voice recording permission!!!!
         recorder.setAudioSource(MediaRecorder.AudioSource.VOICE_CALL);
@@ -46,12 +54,17 @@ public class RecordingService extends Service {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        */
     }
 
     private void stopRecording(){
+        call.setEnd();
+        RecordingTableConnector dbConnector = new RecordingTableConnector(this);
+        dbConnector.insert(call);
+        /*
         recorder.stop();
         recorder.release();
+        */
     }
 
     @Override
@@ -59,6 +72,14 @@ public class RecordingService extends Service {
         super.onDestroy();
         stopRecording();
         sendNotification(234);
+    }
+
+
+    // because we are firing this service by startService() and NOT bindService() - > onBind returns null.
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 
     private void sendNotification(int length){
@@ -76,11 +97,5 @@ public class RecordingService extends Service {
         manager.notify(120, builder.build());   // execute! display the notification.
     }
 
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
 
-    // TODO: 8/18/2016 dont forget declare the service in the MANIFEST file.
 }

@@ -60,11 +60,11 @@ public class CallDetailActivity extends AppCompatActivity implements View.OnClic
 
     private int songDuration;
 
-    private String convertMilliToString(int millisecond){
-        int duration = millisecond;
+    public static String convertMilliToString(long millisecond){
+        long duration = millisecond;
         duration /= 1000;
-        int minutes = duration / 60;
-        int seconds = duration % 60;
+        long minutes = duration / 60;
+        long seconds = duration % 60;
         return (minutes > 9 ? minutes : "0" + minutes) + ":" + (seconds > 9 ? seconds : "0" + seconds);
     }
 
