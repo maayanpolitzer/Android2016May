@@ -19,13 +19,12 @@ public abstract class BaseAuthenticatedActivity extends BaseActivity {
             startActivity(intent);
             return; // stop the onCreate method!!!
         }
-
         onLoggedIn(savedInstanceState);
 
     }
 
     private boolean userExists(){
-        return true;
+        return settings.getInt(BaseActivity.USER_ID, -1) != -1; // check if user exists... return -1 if NOT!!!!
     }
 
     protected abstract void onLoggedIn(Bundle savedInstanceState);
