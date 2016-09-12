@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,12 +20,23 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         registerBtn = (Button) findViewById(R.id.activity_register_btn);
 
         registerBtn.setOnClickListener(this);
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return true;
+    }
 
     @Override
     public void onClick(View v) {
@@ -44,9 +56,17 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        // finish();    // no need when there is super.onBackPressed();.
+    }
+
+    @Override
     public void login(int userID) {
         Log.d("TAG", "userID: " + userID);
-        editor.putInt(BaseActivity.USER_ID, userID);
+        editor.putInt(BaseActivity.USER_ID, userID);    // save userID to sharedPrefs...
         editor.commit();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

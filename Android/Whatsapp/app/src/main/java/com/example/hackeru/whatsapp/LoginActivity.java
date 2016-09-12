@@ -1,8 +1,11 @@
 package com.example.hackeru.whatsapp;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.hackeru.whatsapp.db.DBOpenHelper;
 
 public class LoginActivity extends BaseActivity {
 
@@ -20,5 +23,8 @@ public class LoginActivity extends BaseActivity {
                 finish();
             }
         });
+
+        DBOpenHelper helper = new DBOpenHelper(this);
+        SQLiteDatabase db = helper.getWritableDatabase();
     }
 }

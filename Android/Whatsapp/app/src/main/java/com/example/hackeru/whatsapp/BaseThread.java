@@ -11,4 +11,5 @@ public class BaseThread extends Thread {
     protected static final int ACTION_REGISTER = 3;
     protected static final int ACTION_LOGIN = 4;
     protected static final int ACTION_GET_MESSAGE = 5;
+    protected static final int ACTION_GET_USERS = 6;
 }
